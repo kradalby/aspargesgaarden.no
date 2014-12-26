@@ -6,10 +6,7 @@ var home = {
     controller: function() {},
     view: function() {
         return m('div', [
-            m('h1'),
-            m('p', 'derpmerp'),
-            m('p', 'derpmerp'),
-            m('p', 'derpmerp'),
+            m('h1', "Velkommen til oss"),
         ])
     }
 }
@@ -36,10 +33,38 @@ var pictures = {
     }
 }
 
+var meetings = {
+    controller: function() {},
+    view: function() {
+        return m('div', [
+            m('h1', "Møter"),
+        ])
+    }
+}
+
+var information = {
+    controller: function() {},
+    view: function() {
+        return m('div', [
+            m('h1', "Informasjon"),
+        ])
+    }
+}
+
+var contact = {
+    controller: function() {},
+    view: function() {
+        return m('div', [
+            m('h1', "Kontakt informasjon"),
+        ])
+    }
+}
+
 m.route.mode = 'hash'
 m.route(document.getElementById('right'), '/', {
     '/': home,
     '/bilder': pictures,
-    //'/informasjon': information,
-    //'/kontaktoss': contact
+    '/moter': meetings,
+    '/informasjon': information,
+    '/kontaktoss': contact
 })
