@@ -9,6 +9,7 @@ import (
     "database/sql"
     "strconv"
     "fmt"
+    "errors"
 )
 
 type Meeting struct {
@@ -57,14 +58,20 @@ func MeetingList(c *gin.Context) {
 func MeetingDetail(c *gin.Context) {
     meeting_id := c.Params.ByName("meeting_id")
     m_id, _ := strconv.Atoi(meeting_id)
-    meeting := getMeeting(m_id)
-    content := gin.H{
-        "Title": meeting.Title,
-        "Information": meeting.Information,
-        "Date": meeting.Date,
-        "Image": meeting.Image,
+    meeting, err := getMeeting(m_id)
+    if err != nil {
+        c.JSON(500, gin.H{
+            "Result": err,
+        })
+    } else {
+        content := gin.H{
+            "Title": meeting.Title,
+            "Information": meeting.Information,
+            "Date": meeting.Date,
+            "Image": meeting.Image,
+        }
+        c.JSON(200, content)
     }
-    c.JSON(200, content)
 }
 
 func MeetingPost(c *gin.Context) {
@@ -113,12 +120,14 @@ func createMeeting(title, info, image string, date int64) Meeting {
     return meeting
 }
 
-func getMeeting(m_id int) Meeting {
+func getMeeting(m_id int) (Meeting, error) {
     meeting := Meeting{}
     err := dbmap.SelectOne(&meeting, "select * from meetings where meeting_id=?;", m_id)
-    fmt.Println(err)
+    if err != nil {
+        return meeting, errors.New("Event not found")
+    }
     checkErr(err, "SelectOne failed")
-    return meeting
+    return meeting, nil
 }
 
 func getNextMeeting() Meeting {
