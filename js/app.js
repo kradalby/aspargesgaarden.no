@@ -1,6 +1,6 @@
 'use strict'
 
-var API_URL = "http://localhost:8080/"
+var API_URL = "https://aspargesgaarden.no/"
 
 var app = app || {};
 
@@ -12,26 +12,27 @@ var Meeting = function(data) {
 }
 
 var home = {
-    next: function() {
-        return m.request({
-            method: "GET", 
-            url: API_URL + "next", 
-            //unwrapSuccess: function (response) {
-            //    return response.meetings
-            //},
-            type: Meeting,
-        })
-    },
-    vm: {
-        init: function() {
-            this.meetings = new home.next()
-        }
-    },
-    controller: function() {
-        home.vm.init()
-    },
+    //next: function() {
+    //    return m.request({
+    //        method: "GET", 
+    //        url: API_URL + "next", 
+    //        //unwrapSuccess: function (response) {
+    //        //    return response.meetings
+    //        //},
+    //        type: Meeting,
+    //    })
+    //},
+    //vm: {
+    //    init: function() {
+    //        this.meetings = new home.next()
+    //    }
+    //},
+    //controller: function() {
+    //    home.vm.init()
+    //},
+    controller: function() {},
     view: function() {
-        var meet = home.vm.meetings()
+        //var meet = home.vm.meetings()
         return m('div', [
             m('h1', "Velkommen til oss!"),
             m('p',"Gården ligger i idylliske omgivelser i Tjølling, ned mot Viksfjord. Her leier vi ut lekre selskapslokaler med mange fasiliteter."),
@@ -51,7 +52,7 @@ var pictures = {
     controller: function() {},
     view: function() {
         var img = []
-        for (var n = 1; n < 8; n++) {
+        for (var n = 1; n < 17; n++) {
             img.push(m("img", {
                 class: "thumb", 
                 src:"img/" + n + ".jpg", 
@@ -69,39 +70,39 @@ var pictures = {
     }
 }
 
-var meetings = {
-    list: function() {
-        return m.request({
-            method: "GET", 
-            url: API_URL + "meetings", 
-            unwrapSuccess: function (response) {
-                return response.meetings
-            },
-            type: Meeting,
-        })
-    },
-    vm: {
-        init: function() {
-            this.meetings = new meetings.list()
-        }
-    },
-    controller: function() {
-        meetings.vm.init()
-    },
-    view: function() {
-        var meets = meetings.vm.meetings().map(function(meet) {
-            return [
-                m('h1', meet.title()),
-                m('p', dateToString(new Date(meet.date() * 1000))),
-                m('information', meet.information())
-            ]
-        })
-        return m('div', [
-            m('h1', "Møter"),
-            meets
-        ])
-    }
-}
+//var meetings = {
+//    list: function() {
+//        return m.request({
+//            method: "GET", 
+//            url: API_URL + "meetings", 
+//            unwrapSuccess: function (response) {
+//                return response.meetings
+//            },
+//            type: Meeting,
+//        })
+//    },
+//    vm: {
+//        init: function() {
+//            this.meetings = new meetings.list()
+//        }
+//    },
+//    controller: function() {
+//        meetings.vm.init()
+//    },
+//    view: function() {
+//        var meets = meetings.vm.meetings().map(function(meet) {
+//            return [
+//                m('h1', meet.title()),
+//                m('p', dateToString(new Date(meet.date() * 1000))),
+//                m('information', meet.information())
+//            ]
+//        })
+//        return m('div', [
+//            m('h1', "Møter"),
+//            meets
+//        ])
+//    }
+//}
 
 var information = {
     controller: function() {},
@@ -136,7 +137,7 @@ var equipment = {
                   "Selskapslokelene er utstyrt med høytaleranlegg som trådløst styres gjennom en Sonos app. Leietagere kan enkelt ta med en smarttelefon eller laptop og spille musikk fra denne."
                  ),
                 m('p',
-                  "I spiseområdet er det også utstyrt med TVer som kan brukes til visning av film eller bilder."
+                  "I spiseområdet er det også utstyrt med flatskjermer som kan brukes til visning av film eller bilder."
                  ),
             ]),
             m('div', {}, [
@@ -183,7 +184,7 @@ m.route.mode = 'hash'
 m.route(document.getElementById('right'), '/', {
     '/': home,
     '/bilder': pictures,
-    '/moter': meetings,
+    //'/moter': meetings,
     '/informasjon': information,
     '/utstyr': equipment,
     '/kontaktoss': contact
