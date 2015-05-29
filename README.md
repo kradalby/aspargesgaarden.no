@@ -1,4 +1,4 @@
 aspargesgaarden.no
 ==================
 
-Website for Aspargesgaarden. Single page app written using Mithril
+Website for Aspargesgaarden. Built with go, gin and pongo2

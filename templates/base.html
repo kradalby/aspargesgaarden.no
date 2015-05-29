@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Aspargesgården selskapslokaler</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Aspargesgården selskapslokaler"/>
+        <meta name="author" content=" Kristoffer Dalby"/>
+        <meta name="tags" content="asparges, aspargesgaarden, aspargesgård, selskap, selvskap, selskapslokaler, selvskapslokaler, tjodalyng, larvik, sandefjord, østby, østbyveien"/>
+        <meta name="keywords" content="asparges, aspargesgaarden, aspargesgård, selskap, selvskap, selskapslokaler, selvskapslokaler, tjodalyng, larvik, sandefjord, østby, østbyveien"/>
+        <meta name="date" content="03/01/2015 19:15"/>
+        <meta name="modified" content="03/01/2015 19:15"/>
+    
+        <link rel="stylesheet/css" type="text/css" href="static/css/bundle.css" />
+
+    
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div class="container">
+            <div id="left">
+                <img class="logo" alt="Aspargesgården" src="img/logo2.jpeg" width="100%">
+                {% include 'nav.html' %}
+            </div>
+            <div id="right">
+                {% block content-right %}
+                {% endblock content-right %}
+            </div>
+
+        </div>
+
+        <script src="js/asparges.js"></script>
+    </body>
+</html>
