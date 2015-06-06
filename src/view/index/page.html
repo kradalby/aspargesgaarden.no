@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h1>{{ page.title }}</h1>
+
+    {% autoescape off %}
+    <div>{{ page.content }}</div>
+    {% endautoescape %}
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/js/pictures.js"></script>
+{% endblock %}

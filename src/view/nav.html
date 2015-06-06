@@ -1,0 +1,10 @@
+
+{% block nav %}
+<nav>
+    <ul>
+        {% for page in pages %}
+        <li><a href="/{{ page.url }}">{{ page.url|title }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}

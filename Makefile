@@ -1,38 +1,59 @@
 PATH  := node_modules/.bin:$(PATH)
-SHELL := /bin/zsh
+SHELL := /bin/bash
+REBAR := ./rebar
 
-build.css: 
-	lessc less/style.less static/css/bundle.css
-	autoprefixer static/css/bundle.css
+all: get-deps compile compile-app
+
+get-deps:
+	$(REBAR) get-deps
+	npm install
+
+build.css:
+	mkdir -p priv/static/css
+	lessc less/style.less priv/static/css/bundle.css
+	autoprefixer priv/static/css/bundle.css
 
 build.js:
-#	browserify frontend/js/app.js -o public/javascripts/bundle.js
-	cp js/* static/js/
-
-build.go:
-	go build
+	mkdir -p priv/static/js
+#       browserify frontend/js/app.js -o public/javascripts/bundle.js
+	cp js/* priv/static/js/
 
 build: build.js build.css
+	cp -rv img priv/static/
 
-watch.css: 
-	nodemon -I -w frontend/less/ --ext less --exec 'npm 	run build:css'
+watch.css:
+	nodemon -I -w less/ --ext less --exec 'make build.css'
 
 watch.js:
-	watchify frontend/js/app.js -o public/javascriptsripts/bundle.js -v
+	watchify js/app.js -o priv/static/js/bundle.js -v
 
 watch: watch.css watch.js
 
 jshint:
-	jshint --reporter node_modules/jshint-stylish/stylish.js frontend/js/; true
+	jshint --reporter node_modules/jshint-stylish/stylish.js js/; true
 
-dev:
-	go get
-	npm install
+run:
+	./init-dev.sh
 
-run: 
-	go run main.go
+compile:
+	$(REBAR) compile
 
-test: 
-	go test
+compile-app:
+	$(REBAR) boss c=compile
 
-all: initjs build run
+help:
+	@echo 'Makefile for your chicagoboss app                                      '
+	@echo '                                                                       '
+	@echo 'Usage:                                                                 '
+	@echo '   make help                        displays this help text            '
+	@echo '   make get-deps                    updates all dependencies           '
+	@echo '   make compile                     compiles dependencies              '
+	@echo '   make compile-app                 compiles only your app             '
+	@echo '                                    (so you can reload via init.sh)    '
+	@echo '   make all                         get-deps compile compile-app       '
+	@echo '                                                                       '
+	@echo 'DEFAULT:                                                               '
+	@echo '   make all                                                            '
+	@echo '                                                                       '
+
+.PHONY: all get-deps compile compile-app help

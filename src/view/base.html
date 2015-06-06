@@ -10,7 +10,7 @@
         <meta name="date" content="03/01/2015 19:15"/>
         <meta name="modified" content="03/01/2015 19:15"/>
     
-        <link rel="stylesheet/css" type="text/css" href="static/css/bundle.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/bundle.css" />
 
     
         <!--[if lt IE 9]>
@@ -21,16 +21,17 @@
     <body>
         <div class="container">
             <div id="left">
-                <img class="logo" alt="Aspargesgården" src="img/logo2.jpeg" width="100%">
-                {% include 'nav.html' %}
+                <img class="logo" alt="Aspargesgården" src="/static/img/logo2.jpeg" width="100%">
+                {% include "nav.html" %}
             </div>
             <div id="right">
-                {% block content-right %}
-                {% endblock content-right %}
+                {% block content %}
+                {% endblock %}
             </div>
 
         </div>
 
-        <script src="js/asparges.js"></script>
+       {% block js %}
+       {% endblock %}
     </body>
 </html>
