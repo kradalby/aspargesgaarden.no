@@ -5,8 +5,7 @@ lost('GET', []) ->
     {ok, [{}]}.
 
 hello('GET', []) ->
-    Pages = boss_db:find(page, []),
-    {ok, [{pages, Pages}]}.
+    {ok, [{redirect, "/hjem"}]}.
 
 page('GET', [PageName]) ->
     Pages = boss_db:find(page, []),
