@@ -3,6 +3,7 @@ static/
 log/
 ebin/
 boss.config
+scratch/
 erl_crash.dump
 
 # Created by https://www.gitignore.io
