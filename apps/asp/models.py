@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Page(models.Model):
+    identifier = models.CharField(max_length=30, unique=True)
     title = models.CharField(max_length=30)
     content = models.TextField()
 

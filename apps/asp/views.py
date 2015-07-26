@@ -5,8 +5,8 @@ from .models import Image, Page
 # Create your views here.
 
 def index(request):
-    home = Page.objects.get(id=1)
-    return render(request, 'index.html', { "page": home })
+    page = Page.objects.get(identifier="hjem")
+    return render(request, 'index.html', { "page": page })
 
 def gallery(request):
     images = Image.objects.all()
@@ -15,3 +15,6 @@ def gallery(request):
 def calendar(request):
     return render(request, 'calendar.html', {})
 
+def contact(request):
+    page = Page.objects.get(identifier="kontaktoss")
+    return render(request, 'contact.html', { "page": page })
