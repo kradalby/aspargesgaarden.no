@@ -1,59 +1,50 @@
+ENV=./env/bin
 PATH  := node_modules/.bin:$(PATH)
 SHELL := /bin/bash
-REBAR := ./rebar
 
-all: get-deps compile compile-app
-
-get-deps:
-	$(REBAR) get-deps
-	npm install
-
-build.css:
-	mkdir -p priv/static/css
-	lessc less/style.less priv/static/css/bundle.css
-	autoprefixer priv/static/css/bundle.css
+build.css: 
+	mkdir -p static/css
+	lessc less/style.less static/css/bundle.css
+	autoprefixer static/css/bundle.css
 
 build.js:
-	mkdir -p priv/static/js
-#       browserify frontend/js/app.js -o public/javascripts/bundle.js
-	cp js/* priv/static/js/
+	mkdir -p static/js
+	browserify js/app.js -o static/js/bundle.js
 
 build: build.js build.css
-	cp -rv img priv/static/
 
-watch.css:
-	nodemon -I -w less/ --ext less --exec 'make build.css'
+watch.css: 
+	nodemon -I -w less/ --ext less --exec 'make build.css' &
 
 watch.js:
-	watchify js/app.js -o priv/static/js/bundle.js -v
+	watchify js/app.js -o static/js/bundle.js -v &
 
 watch: watch.css watch.js
 
 jshint:
 	jshint --reporter node_modules/jshint-stylish/stylish.js js/; true
 
-run:
-	./init-dev.sh
+dev: 
+	npm install
+	$(ENV)/pip install -r requirements/development.txt --upgrade
 
-compile:
-	$(REBAR) compile
+prod:
+	$(ENV)/pip install -r requirements/production.txt --upgrade
 
-compile-app:
-	$(REBAR) boss c=compile
+env:
+	virtualenv -p `which python3` env
 
-help:
-	@echo 'Makefile for your chicagoboss app                                      '
-	@echo '                                                                       '
-	@echo 'Usage:                                                                 '
-	@echo '   make help                        displays this help text            '
-	@echo '   make get-deps                    updates all dependencies           '
-	@echo '   make compile                     compiles dependencies              '
-	@echo '   make compile-app                 compiles only your app             '
-	@echo '                                    (so you can reload via init.sh)    '
-	@echo '   make all                         get-deps compile compile-app       '
-	@echo '                                                                       '
-	@echo 'DEFAULT:                                                               '
-	@echo '   make all                                                            '
-	@echo '                                                                       '
+clean:
+	pyclean .
+	find . -name "*.pyc" -exec rm -rf {} \;
+	rm -rf *.egg-info
 
-.PHONY: all get-deps compile compile-app help
+test:
+	$(ENV)/python setup.py test
+
+#run:
+#	$(ENV)/python gso.py
+
+freeze:
+	mkdir -p requirements
+	$(ENV)/pip freeze > requirements/base.txt
