@@ -10,6 +10,7 @@
         {% for page in pages %}
         <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
+        <li><a href="{% url "contact" %}">Kontakt oss</a></li>
     </ul>
 </nav>
 {% endblock %}

@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^$', 'apps.asp.views.index'),
     url(r'^bilder/', 'apps.asp.views.gallery', name="gallery"),
     url(r'^kalender/', 'apps.asp.views.calendar', name="calendar"),
+    url(r'^kontaktoss/', 'apps.asp.views.contact', name="contact"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
 
