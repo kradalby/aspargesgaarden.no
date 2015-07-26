@@ -3,7 +3,7 @@ from aspargesgaarden.settings.base import *
 ALLOWED_HOSTS = ['aspargesgaarden.no']
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f4q3p8nw089yt30q498tvyw4nvy3489vqb34nc349tv349v8'
+SECRET_KEY = 'secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
