@@ -1,4 +1,4 @@
 aspargesgaarden.no
 ==================
 
-Website for Aspargesgaarden. Built with go, gin and pongo2
+Website for Aspargesgaarden. Built with Django.
