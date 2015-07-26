@@ -11,6 +11,11 @@ build.js:
 	mkdir -p static/js
 	browserify js/app.js -o static/js/bundle.js
 
+collect_static:
+	mkdir collected_static
+	$(ENV)/python manage.py collectstatic
+
+
 build: build.js build.css
 
 watch.css: 
