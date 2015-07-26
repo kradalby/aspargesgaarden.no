@@ -1,9 +1,14 @@
+{% load flatpages %}
+{% get_flatpages as pages %}
 
 {% block nav %}
 <nav>
     <ul>
+        <li><a href="/">Hjem</a></li>
+        <li><a href="{% url "gallery" %}">Bilder</a></li>
+        <li><a href="{% url "calendar" %}">Kalender</a></li>
         {% for page in pages %}
-        <li><a href="/{{ page.url }}">{{ page.url|title }}</a></li>
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
     </ul>
 </nav>

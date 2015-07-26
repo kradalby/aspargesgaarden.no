@@ -1,4 +1,4 @@
-"""init_django URL Configuration
+"""aspargesgaarden URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -17,9 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^$', 'apps.terminal.views.index'),
+    url(r'^$', 'apps.asp.views.index'),
+    url(r'^bilder/', 'apps.asp.views.gallery', name="gallery"),
+    url(r'^kalender/', 'apps.asp.views.calendar', name="calendar"),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^appname/', include('apps.appname.urls')),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
 
-    url(r'^terminal/', include('apps.terminal.urls')),
+    #url(r'^appname/', include('apps.appname.urls')),
 ]
