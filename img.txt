@@ -1,2 +1,0 @@
-convert $i.jpg -resize 749x501 $i.jpg
-convert 7.jpg -auto-orient 7.jpg

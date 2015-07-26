@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+{{ page.content|markdown }}
+
+<iframe width="600px" height="450px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%C3%98stbyveien%2075%2C%20Tjodalyng%2C%20Norway&amp;key=AIzaSyCn1POUaVcRMs5y4lL73XkrfOAI8B5DotI"></iframe>
+{% endblock %}
