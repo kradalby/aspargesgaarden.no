@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
 
-    #url(r'^appname/', include('apps.appname.urls')),
+    # url(r'^appname/', include('apps.appname.urls')),
 ]
