@@ -1,7 +1,7 @@
 # image: kradalby/python
 image: evonove/ci
 git:
-  path: github.com/kradalby/init_django
+  path: github.com/kradalby/aspargesgaarden.no
 
 env:
     - DJANGO_SETTINGS_MODULE=init_django.settings.dev
