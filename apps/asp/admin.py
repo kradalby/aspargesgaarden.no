@@ -1,6 +1,6 @@
-from django.contrib import admin
+from apps.asp.models import Image, Page
 
-from .models import Page, Image
+from django.contrib import admin
 
 
 class ImageAdmin(admin.ModelAdmin):
