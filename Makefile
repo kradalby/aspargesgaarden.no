@@ -7,30 +7,37 @@ MANAGE=$(PYTHON) manage.py
 
 build.css: 
 	mkdir -p static/css
-	lessc less/style.less static/css/bundle.css
-	autoprefixer static/css/bundle.css
+	lessc frontend/less/style.less static/css/bundle.css
+	autoprefixer styletatic/css/bundle.css
 
 build.js:
 	mkdir -p static/js
-	browserify js/app.js -o static/js/bundle.js
+	browserify frontend/js/app.js | uglifyjs -c > static/js/bundle.js
+
+build.js.debug:
+	browserify frontend/js/app.js > static/js/bundle.js
 
 collect_static:
 	mkdir collected_static
 	$(MANAGE) collectstatic
 
-
 build: build.js build.css
 
 watch.css: 
-	nodemon -I -w less/ --ext less --exec 'make build.css' &
+	nodemon -I -w frontend/less/ --ext less --exec 'make build.css' &
 
 watch.js:
-	watchify js/app.js -o static/js/bundle.js -v &
+	watchify frontend/js/app.js -o static/js/bundle.js -v &
 
 watch: watch.css watch.js
 
-jshint:
-	jshint --reporter node_modules/jshint-stylish/stylish.js js/; true
+eslint:
+	eslint frontend/js
+
+flake8:
+	flake8
+
+lint: eslint flake8
 
 dev: 
 	npm install
