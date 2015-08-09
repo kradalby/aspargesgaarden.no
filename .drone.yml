@@ -15,3 +15,9 @@ notify:
   email:
     recipients:
       - kradalby@kradalby.no
+
+deploy:
+  bash:
+    script: 
+      - 'git -C ~/git/plays pull'
+      - 'ansible-playbook -i ~/git/plays/inventory ~/git/plays/deploy/aspargesgaarden.no.yml'
