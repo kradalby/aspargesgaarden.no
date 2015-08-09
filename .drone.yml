@@ -19,5 +19,6 @@ notify:
 deploy:
   bash:
     script: 
-      - 'git -C ~/git/plays pull'
-      - 'ansible-playbook -i ~/git/plays/inventory ~/git/plays/deploy/aspargesgaarden.no.yml'
+        - 'pip install ansible'
+        - 'git clone https://github.com/kradalby/plays.git'
+        - 'ansible-playbook -i plays/inventory plays/deploy/aspargesgaarden.no.yml'
