@@ -39,6 +39,9 @@ flake8:
 
 lint: eslint flake8
 
+migrate:
+	$(MANAGE) migrate
+
 dev: 
 	npm install
 	$(PIP) install -r requirements/development.txt --upgrade
