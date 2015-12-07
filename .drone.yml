@@ -24,4 +24,4 @@ deploy:
       - git pull
       - make prod
       - make migrate
-      - supervisorctl restart uwsgi_aspargesgaarden
+      - supervisorctl restart uwsgi_aspargesgaarden.no
