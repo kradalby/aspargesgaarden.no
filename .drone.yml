@@ -1,22 +1,27 @@
-# image: kradalby/python
-image: kradalby/ci-tox
-
-git:
-  path: github.com/kradalby/aspargesgaarden.no
-
-env:
-    - DJANGO_SETTINGS_MODULE=init_django.settings.dev
-
-script:
-    - tox
+build:
+    image: kradalby/ci-tox:latest
+    pull: true
+    environment:
+      - DJANGO_SETTINGS_MODULE=init_django.settings.dev
+    commands:
+      - tox
 
 notify:
   email:
+    from: drone@fap.no
+    host: smtp.stud.ntnu.no
+    port: 25
     recipients:
       - kradalby@kradalby.no
 
 deploy:
-  bash:
-    script: 
-        - 'git clone https://github.com/kradalby/plays.git'
-        - 'ansible-playbook -i plays/inventory plays/deploy/aspargesgaarden.no.yml'
+  ssh:
+    host: onyx.fap.no
+    user: www
+    port: 22
+    commands:
+      - cd /usr/local/www/aspargesgaarden.no
+      - git pull
+      - make prod
+      - make migrate
+      - supervisorctl restart uwsgi_aspargesgaarden
