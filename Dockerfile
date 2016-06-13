@@ -9,6 +9,7 @@ ENV DIR=/srv/app
 
 RUN apk update
 RUN apk add postgresql-dev \
+        mailcap \
         build-base \
         python3-dev \
         jpeg-dev \
