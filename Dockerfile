@@ -26,6 +26,7 @@ COPY . $DIR
 RUN mkdir static media
 
 RUN python3 -m pip install pip -U
+
 RUN pip3 install -r requirements/production.txt --upgrade
 
 ENV DJANGO_SETTINGS_MODULE=$NAME.settings.dev
