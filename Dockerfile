@@ -2,10 +2,10 @@ FROM alpine:3.4
 
 MAINTAINER Kristoffer Dalby
 
-EXPOSE 8080
 
 ENV NAME=aspargesgaarden
 ENV DIR=/srv/app
+ENV LIBRARY_PATH=/lib:/usr/lib
 
 RUN apk update
 RUN apk add postgresql-dev \
@@ -18,24 +18,26 @@ RUN apk add postgresql-dev \
         linux-headers \
         pcre-dev
 
-ENV LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR $DIR
 
+# Install requirements
+COPY ./requirements $DIR/requirements
+RUN python3 -m pip install pip -U && \
+    pip3 install -r requirements/production.txt --upgrade
+
+# Delete unneeded files.
+RUN apk del build-base \
+        python-dev
+
+# Copy project files
 COPY . $DIR
 
 RUN mkdir static media
-
-RUN python3 -m pip install pip -U
-
-RUN pip3 install -r requirements/production.txt --upgrade
-
 ENV DJANGO_SETTINGS_MODULE=$NAME.settings.dev
 RUN python3 manage.py collectstatic --noinput --clear
 
-RUN apk del build-base \
-        python3-dev
-
 ENV DJANGO_SETTINGS_MODULE=$NAME.settings.prod
+EXPOSE 8080
 
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
