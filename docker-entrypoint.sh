@@ -15,6 +15,7 @@ exec uwsgi --chdir=/srv/app \
     --processes=5 \
     --harakiri=20 \
     --max-requests=5000 \
+    --offload-threads=4 \
     --static-map=/static=/srv/app/static \
     --static-map=/media=/srv/app/media \
     --vacuum
