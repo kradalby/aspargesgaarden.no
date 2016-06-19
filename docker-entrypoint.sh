@@ -15,6 +15,6 @@ exec uwsgi --chdir=/srv/app \
     --processes=5 \
     --harakiri=20 \
     --max-requests=5000 \
-    --static-map=/static=./static
-    --static-map=/media=./media
+    --static-map=/static=./static \
+    --static-map=/media=./media \
     --vacuum
