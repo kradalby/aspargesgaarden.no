@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-python manage.py migrate
+python3 manage.py migrate
 
 rm /tmp/project-master.pid
 
@@ -15,6 +15,6 @@ exec uwsgi --chdir=/srv/app \
     --processes=5 \
     --harakiri=20 \
     --max-requests=5000 \
-    --static-map=/static=./static \
-    --static-map=/media=./media \
+    --static-map=/static=/srv/app/static \
+    --static-map=/media=/srv/app/media \
     --vacuum
