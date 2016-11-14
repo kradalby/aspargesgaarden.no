@@ -22,6 +22,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
+SECRET_KEY='OVERRIDE ME IN PROD'
 
 # Application definition
 
