@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800');
+
+body {
+  font-family: 'Open Sans';
+  background: url(../img/bg.jpg) no-repeat center center fixed;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+header,
+main,
+footer {
+  width: 960px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 48px;
+  padding-bottom: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  padding: 20px 0;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+p {
+  padding: 5px 0;
+}
+
+#logo {
+  background-color: white;
+}
+
+#logo img {
+  display: block;
+  margin: 0 auto;
+  width: 748px;
+}
+
+nav {
+  background-color: black;
+  height: 60px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-left: 106px;
+}
+
+nav ul li a {
+  float: left;
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  padding: 16px 31px 16px 34px; /* Spor Tri */
+}
+
+nav ul li a:hover {
+  color: #d1d1d1;
+  text-decoration: none;
+}
+
+main {
+  background-color: white;
+  padding-bottom: 40px;
+}
+
+#show img {
+  width: 100%;
+}
+
+.body-content {
+  margin: 0 auto;
+  width: 680px;
+  padding-top: 20px;
+}
+
+footer {
+  background-color: black;
+  height: 100%;
+  min-height: 400px;
+}
+
+footer #contact {
+  box-sizing: border-box;
+  width: 50%;
+  color: white;
+  padding-top: 32px;
+  padding-left: 138px;
+  float: left;
+}
+
+footer #direct {
+  padding-bottom: 15px;
+}
+
+footer #map {
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  padding: 26px 106px 0 0;
+}
+
+footer #copyright {
+  clear: both;
+  padding-top: 40px;
+  text-align: center;
+  color: white;
+}
+
+.carousel {
+  margin-bottom: 0;
+}
+
+.carousel .carousel-caption {
+  background-color: white;
+  padding-top: 0;
+}
+
+.carousel .carousel-caption .btn {
+  margin-bottom: 10px;
+}

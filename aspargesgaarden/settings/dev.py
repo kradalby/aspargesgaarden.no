@@ -1,19 +1,18 @@
-from aspargesgaarden.settings.base import *
+from __future__ import absolute_import, unicode_literals
 
-ALLOWED_HOSTS = []
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'secret'
+from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '63mu7-kq#djt!qyu9rcu&2)m+i7wm%f=s8$f)$r3%uextqfg9c'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+try:
+    from .local import *
+except ImportError:
+    pass

@@ -9,7 +9,7 @@ tail -n 0 -f /srv/app/*.log &
 echo Starting uwsgi.
 exec uwsgi --chdir=/srv/app \
     --module=aspargesgaarden.wsgi:application \
-    --env DJANGO_SETTINGS_MODULE=aspargesgaarden.settings.prod \
+    --env DJANGO_SETTINGS_MODULE=aspargesgaarden.settings.production \
     --master --pidfile=/tmp/project-master.pid \
     --socket=0.0.0.0:8080 \
     --http=0.0.0.0:8081 \
