@@ -2,6 +2,8 @@ from datetime import date
 from django import template
 from django.conf import settings
 
+from wagtail.wagtailcore.models import Page
+
 register = template.Library()
 
 
@@ -20,3 +22,16 @@ def get_site_root(context):
 
 def has_menu_children(page):
     return page.get_children().live().in_menu().exists()
+
+
+@register.inclusion_tag('home/tags/top_menu.html', takes_context=True)
+def top_menu(context, parent, calling_page=None):
+    menuitems = [parent] + [
+        item for item in parent.get_children().live().in_menu()
+    ]
+    return {
+        'calling_page': calling_page,
+        'menuitems': menuitems,
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
