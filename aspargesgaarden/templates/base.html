@@ -9,14 +9,19 @@
 <!--<![endif]-->
 
 <head>
-    <meta content="width=960, initial-scale=1.0; " name="viewport">
+    <meta content="width=960" name="viewport">
     <title>{% block title %}{{ self.title }}{% endblock %}{% block title_postfix %} | Aspargesgården {% endblock %}</title>
 
     <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" /> {% compress css %} {# Custom stylesheets #}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    {% compress css %} {# Custom stylesheets #}
     <link rel="stylesheet" href='{% static "home/style/reset.css" %}' />
-    <link rel="stylesheet" href='{% static "home/style/main.css" %}' /> {% endcompress %} {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href='{% static "home/style/main.css" %}' /> i
+    {% endcompress %}
+
+    {% block extra_css %}{% endblock %}
     <script>
             !function(k,r,a,d,l,b,y){k.GoogleAnalyticsObject=a;k[a]||(k[a]=function(){
 (k[a].q=k[a].q||[]).push(arguments)});k[a].l=+new Date;b=r.createElement(d);
