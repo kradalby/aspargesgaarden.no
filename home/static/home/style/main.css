@@ -4,6 +4,7 @@ body {
   font-family: 'Open Sans';
   background: url(../img/bg.jpg) no-repeat center center fixed;
   font-weight: 300;
+  line-height: 24px;
 }
 
 header,
@@ -18,12 +19,17 @@ h1 {
   padding-bottom: 20px;
 }
 
+h2 {
+  font-size: 32px;
+  padding: 20px 0;
+}
+
 h5 {
   font-size: 16px;
 }
 
 p {
-  padding: 3px 0;
+  padding: 5px 0;
 }
 
 #logo {
@@ -53,11 +59,12 @@ nav ul li a {
   font-size: 24px;
   display: block;
   text-align: center;
-  padding: 16px 31px; /* Spor Tri */
+  padding: 16px 31px 16px 34px; /* Spor Tri */
 }
 
 nav ul li a:hover {
   color: #d1d1d1;
+  text-decoration: none;
 }
 
 main {
@@ -72,8 +79,7 @@ main {
 .body-content {
   margin: 0 auto;
   width: 680px;
-  text-align: center;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 footer {
@@ -86,7 +92,7 @@ footer #contact {
   box-sizing: border-box;
   width: 50%;
   color: white;
-  padding-top: 20px;
+  padding-top: 32px;
   padding-left: 138px;
   float: left;
 }
@@ -102,12 +108,19 @@ footer #map {
   padding: 26px 106px 0 0;
 }
 
+footer #copyright {
+  clear: both;
+  padding-top: 40px;
+  text-align: center;
+  color: white;
+}
+
 .carousel {
   margin-bottom: 0;
 }
 
 .carousel .carousel-caption {
-  background-color: #ffffff;
+  background-color: white;
   padding-top: 0;
 }
 
