@@ -9,8 +9,7 @@
 <!--<![endif]-->
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta content="width=960, initial-scale=1.0; " name="viewport">
     <title>{% block title %}{{ self.title }}{% endblock %}{% block title_postfix %} | Aspargesgården {% endblock %}</title>
 
     <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
@@ -44,16 +43,10 @@ ga('send', 'pageview');
             <img src='{% static "home/img/logo3.png" %}'>
         </div>
         <nav>
-            <ul>
-                <li><a href="">Hjem</a></li>
-                <li><a href="">Informasjon</a></li>
-                <li><a href="">Kalender</a></li>
-                <li><a href="">Kontakt oss</a></li>
-            </ul>
+            {% block menu %} {% get_site_root as site_root %} {% top_menu parent=site_root calling_page=self %} {% endblock %}
         </nav>
     </header>
 
-    {% block menu %} {% get_site_root as site_root %} {% endblock %}
 
     <main>
 
@@ -77,6 +70,10 @@ ga('send', 'pageview');
         <div id='map'>
             <iframe width="338" height="278" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?zoom=17&center=59.0471%2C10.1247&key=AIzaSyBgipyd2LW8F7rcqDnAiGg3-5HZ3srPhu0"
                 allowfullscreen></iframe>
+        </div>
+
+        <div id='copyright'>
+            &copy; 2014<script>new Date().getFullYear()>2014&&document.write("-"+new Date().getFullYear());</script>, Aspargesgården.
         </div>
 
     </footer>
