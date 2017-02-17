@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: python:2.7.12
+    image: python:3.5.2
     environment:
       - DJANGO_SETTINGS_MODULE=init_django.settings.dev
     commands:
