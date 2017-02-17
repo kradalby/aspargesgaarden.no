@@ -4,8 +4,8 @@ pipeline:
     environment:
       - DJANGO_SETTINGS_MODULE=init_django.settings.dev
     commands:
-        - pip install tox
-        - tox
+      - pip install tox
+      - tox
 
   docker:
     image: plugins/docker
@@ -35,6 +35,6 @@ pipeline:
     host: mail.ntnu.fap.no
     port: 25
     from: drone@drone.fap.no
-    recipients: [ ]
+    recipients: [ kradalby@kradalby.no ]
     when:
       status: [ success, changed, failure ]
