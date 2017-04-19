@@ -38,7 +38,7 @@ deploy:
     sleep: 2
     commands:
       - docker pull registry.fap.no/aspargesgaarden/aspargesgaarden:latest
-      - docker-compose -f /srv/docker/aspargesgaarden/docker-compose.yml stop
+      - docker-compose -f /srv/docker/aspargesgaarden/docker-compose.yml down
       - docker-compose -f /srv/docker/aspargesgaarden/docker-compose.yml up -d
     when:
         branch: master

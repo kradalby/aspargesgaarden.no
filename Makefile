@@ -5,7 +5,7 @@ PYTHON=$(ENV)/python
 PIP=$(ENV)/pip
 MANAGE=$(PYTHON) manage.py
 
-build.css: 
+build.css:
 	mkdir -p static/css
 	lessc frontend/less/style.less static/css/bundle.css
 	autoprefixer styletatic/css/bundle.css
@@ -23,7 +23,7 @@ collect_static:
 
 build: build.js build.css
 
-watch.css: 
+watch.css:
 	nodemon -I -w frontend/less/ --ext less --exec 'make build.css' &
 
 watch.js:
@@ -42,7 +42,7 @@ lint: eslint flake8
 migrate:
 	$(MANAGE) migrate
 
-dev: 
+dev:
 	npm install
 	$(PIP) install -r requirements/development.txt --upgrade
 
@@ -66,3 +66,9 @@ run:
 freeze:
 	mkdir -p requirements
 	$(PIP) freeze > requirements/base.txt
+
+# General
+REPO=kradalby/aspargesgaarden.no
+
+sign:
+	drone sign $(REPO)
