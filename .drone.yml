@@ -1,35 +1,9 @@
 pipeline:
-  test:
-    image: python:3.5.2
-    environment:
-      - DJANGO_SETTINGS_MODULE=init_django.settings.dev
-    commands:
-      - pip install tox
-      - tox
-
-  docker:
+  build:
     image: plugins/docker
-    repo: registry.fap.no/aspargesgaarden/aspargesgaarden
-    insecure: true
-    tags:
-        - latest
-    when:
-        branch: master
-
-  ssh:
-    image: appleboy/drone-ssh
-    host:
-     - primeape.terra.fap.no
-    user: root
-    port: 22
-    command_timeout: 1000
-    script:
-      - docker pull registry.fap.no/aspargesgaarden/aspargesgaarden:latest
-      - docker-compose -f /srv/docker/aspargesgaarden/docker-compose.yml down
-      - docker-compose -f /srv/docker/aspargesgaarden/docker-compose.yml up -d
-    when:
-        status: success
-        branch: master
+    repo: kradalby/aspargesgaarden
+    auto_tag: true
+    secrets: [ docker_username, docker_password ]
 
   notify:
     image: drillster/drone-email
